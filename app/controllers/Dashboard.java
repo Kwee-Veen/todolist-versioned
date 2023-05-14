@@ -14,6 +14,13 @@ public class Dashboard extends Controller
     List<Todo> todolist = Todo.findAll();
     render("dashboard.html", todolist);
   }
+  public static void deleteTodo(Long id)
+  {
+    Todo todo = Todo.findById(id);
+    todo.delete();
+    Logger.info("Deleting " + todo.title);
+    redirect("/dashboard");
+  }
 
   public static void addTodo(String title)
   {
